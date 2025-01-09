@@ -14,10 +14,6 @@ includes:
   - include
   - include/${platform}
 
-libs:
-  - location: https://github.com/mongoose-os-libs/mbedtls
-  - location: https://github.com/mongoose-os-libs/mongoose
-
 no_implicit_init_deps: true
 init_deps:
   - mongoose
@@ -54,6 +50,9 @@ conds:
         - src/esp32xx
       includes:
         - include/esp32xx
+      libs:
+        - location: https://github.com/shelly-homekit-mos/mbedtls
+        - location: https://github.com/shelly-homekit-mos/mongoose
 
   - when: mos.platform == "esp32c3"
     apply:
@@ -61,6 +60,20 @@ conds:
         - src/esp32xx
       includes:
         - include/esp32xx
+      libs:
+        - location: https://github.com/shelly-homekit-mos/mbedtls
+        - location: https://github.com/shelly-homekit-mos/mongoose
+
+  - when: mos.platform == "esp8266"
+    apply:
+      sources:
+        - src/esp32xx
+      includes:
+        - include/esp32xx
+      libs:
+        - location: https://github.com/mongoose-os-libs/mbedtls
+        - location: https://github.com/mongoose-os-libs/mongoose
+
 
   - when: mos.platform == "rs14100"
     apply:
